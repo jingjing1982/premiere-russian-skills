@@ -1,0 +1,42 @@
+{
+  "suites": [
+    {
+      "skill": "heygen-bilingual-upload",
+      "tests": 17,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-cap-subtitle-gaps",
+      "tests": 14,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-natural-pause-trim",
+      "tests": 11,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-ru-caption-layout",
+      "tests": 16,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "ru-srt-merge-by-gaps",
+      "tests": 32,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "ru-srt-merge-by-speaker",
+      "tests": 32,
+      "passed": true,
+      "skill_metadata_valid": true
+    }
+  ],
+  "link_or_privacy_errors": [],
+  "pr_operated": false
+}

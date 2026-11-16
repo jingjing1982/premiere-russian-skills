@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "language": "ru",
+  "overwrite_sources": false,
+  "speed": 5.2,
+  "max_duration_ms": 90000,
+  "extra_pause_ms": 0,
+  "anchor_tolerance_ms": 2000,
+  "mode": "speaker_first_anchor"
+}

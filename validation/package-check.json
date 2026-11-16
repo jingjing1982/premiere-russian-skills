@@ -1,0 +1,39 @@
+{
+  "all_six_install": true,
+  "identical_reinstall_no_overwrite": true,
+  "modified_skill_refused_unchanged": true,
+  "standalone_packages": [
+    {
+      "skill": "heygen-bilingual-upload",
+      "zip_crc_and_bytes": true,
+      "isolated_install": true
+    },
+    {
+      "skill": "premiere-cap-subtitle-gaps",
+      "zip_crc_and_bytes": true,
+      "isolated_install": true
+    },
+    {
+      "skill": "premiere-natural-pause-trim",
+      "zip_crc_and_bytes": true,
+      "isolated_install": true
+    },
+    {
+      "skill": "premiere-ru-caption-layout",
+      "zip_crc_and_bytes": true,
+      "isolated_install": true
+    },
+    {
+      "skill": "ru-srt-merge-by-gaps",
+      "zip_crc_and_bytes": true,
+      "isolated_install": true
+    },
+    {
+      "skill": "ru-srt-merge-by-speaker",
+      "zip_crc_and_bytes": true,
+      "isolated_install": true
+    }
+  ],
+  "pr_contacted": false,
+  "different_machine_pr_tested": false
+}

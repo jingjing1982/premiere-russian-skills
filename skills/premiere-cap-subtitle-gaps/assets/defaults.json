@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "language": "ru",
+  "overwrite_sources": false,
+  "cap_seconds": 10,
+  "head": "preserve",
+  "internal": "half_each_side",
+  "tail": "keep_after_last_caption"
+}

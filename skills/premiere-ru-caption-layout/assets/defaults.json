@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "language": "ru",
+  "overwrite_sources": false,
+  "max_russian_lines": 2,
+  "preferred_tail_words": 3,
+  "min_tail_words": 2,
+  "near_balance_ratio": 0.8,
+  "long_scripture_exception": true,
+  "gap_report_limit_ms": 2000
+}

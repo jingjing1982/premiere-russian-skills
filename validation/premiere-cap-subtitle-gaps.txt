@@ -1,0 +1,19 @@
+test_caption_overlap_rejected (test_frame_plan.FramePlanTests.test_caption_overlap_rejected) ... ok
+test_head_middle_tail_source_offsets_and_manual_cut_preserved (test_frame_plan.FramePlanTests.test_head_middle_tail_source_offsets_and_manual_cut_preserved) ... ok
+test_mismatched_audio_rejected (test_frame_plan.FramePlanTests.test_mismatched_audio_rejected) ... ok
+test_original_input_unchanged (test_frame_plan.FramePlanTests.test_original_input_unchanged) ... ok
+test_overlapping_deletions_rejected (test_frame_plan.FramePlanTests.test_overlapping_deletions_rejected) ... ok
+test_protected_handoff_cannot_be_removed (test_frame_plan.FramePlanTests.test_protected_handoff_cannot_be_removed) ... ok
+test_whole_sequence_delete_rejected (test_frame_plan.FramePlanTests.test_whole_sequence_delete_rejected) ... ok
+test_exact_cap_unchanged_and_custom_cap (test_gap_cap.GapCapTests.test_exact_cap_unchanged_and_custom_cap) ... ok
+test_failed_cli_leaves_no_empty_output (test_gap_cap.GapCapTests.test_failed_cli_leaves_no_empty_output) ... ok
+test_internal_tail_and_head_policy (test_gap_cap.GapCapTests.test_internal_tail_and_head_policy) ... ok
+test_changed_srt_and_project_are_rejected (test_handoff.HandoffTests.test_changed_srt_and_project_are_rejected) ... ok
+test_record_never_overwrites (test_handoff.HandoffTests.test_record_never_overwrites) ... ok
+test_prepare_and_audit_block_unrelated_track_mutation (test_native_cut.NativeTests.test_prepare_and_audit_block_unrelated_track_mutation) ... ok
+test_source_cannot_be_used_as_preview (test_native_cut.NativeTests.test_source_cannot_be_used_as_preview) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.068s
+
+OK

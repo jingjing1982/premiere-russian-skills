@@ -1,0 +1,37 @@
+test_90s_split_backfills_without_moving_later_anchor (test_gesture_timing.TimingTests.test_90s_split_backfills_without_moving_later_anchor) ... ok
+test_any_positive_gap_is_boundary (test_gesture_timing.TimingTests.test_any_positive_gap_is_boundary) ... ok
+test_backfill_neighbor_conflict_does_not_move_single_anchor (test_gesture_timing.TimingTests.test_backfill_neighbor_conflict_does_not_move_single_anchor) ... ok
+test_backwards_capacity_preserves_future_anchor (test_gesture_timing.TimingTests.test_backwards_capacity_preserves_future_anchor) ... ok
+test_chain_backfill_and_suffix_use_rounded_durations (test_gesture_timing.TimingTests.test_chain_backfill_and_suffix_use_rounded_durations) ... ok
+test_chinese_only_rejected (test_gesture_timing.TimingTests.test_chinese_only_rejected) ... ok
+test_compromise_and_primary_conflict (test_gesture_timing.TimingTests.test_compromise_and_primary_conflict) ... ok
+test_count_and_unexpanded_numbers (test_gesture_timing.TimingTests.test_count_and_unexpanded_numbers) ... ok
+test_exact_anchor_and_duration (test_gesture_timing.TimingTests.test_exact_anchor_and_duration) ... ok
+test_fixed_chain_overflow_reported_without_moving_anchor (test_gesture_timing.TimingTests.test_fixed_chain_overflow_reported_without_moving_anchor) ... ok
+test_incompatible_chain_anchors_do_not_export_internal_gap (test_gesture_timing.TimingTests.test_incompatible_chain_anchors_do_not_export_internal_gap) ... ok
+test_missing_or_duplicate_cue (test_gesture_timing.TimingTests.test_missing_or_duplicate_cue) ... ok
+test_neighbor_conflict_not_silent_anchor_push (test_gesture_timing.TimingTests.test_neighbor_conflict_not_silent_anchor_push) ... ok
+test_observed_window_required_and_video_overflow_reported (test_gesture_timing.TimingTests.test_observed_window_required_and_video_overflow_reported) ... ok
+test_positive_source_gap_is_not_closed_between_intervals (test_gesture_timing.TimingTests.test_positive_source_gap_is_not_closed_between_intervals) ... ok
+test_preserves_text_and_refuses_overwrite (test_gesture_timing.TimingTests.test_preserves_text_and_refuses_overwrite) ... ok
+test_raw_and_speech_90 (test_gesture_timing.TimingTests.test_raw_and_speech_90) ... ok
+test_reading_expansion_and_target_prefix (test_gesture_timing.TimingTests.test_reading_expansion_and_target_prefix) ... ok
+test_tail_cap_moves_previous_anchor_within_tolerance (test_gesture_timing.TimingTests.test_tail_cap_moves_previous_anchor_within_tolerance) ... ok
+test_unanchored_continuous_chain_only_first_uses_source_start (test_gesture_timing.TimingTests.test_unanchored_continuous_chain_only_first_uses_source_start) ... ok
+test_changed_srt_and_project_are_rejected (test_handoff.HandoffTests.test_changed_srt_and_project_are_rejected) ... ok
+test_record_never_overwrites (test_handoff.HandoffTests.test_record_never_overwrites) ... ok
+test_duration_cap_override_is_enforced (test_public_merge.PublicMergeTests.test_duration_cap_override_is_enforced) ... ok
+test_fractional_fps_is_not_falsely_labeled_drop_frame (test_public_merge.PublicMergeTests.test_fractional_fps_is_not_falsely_labeled_drop_frame) ... ok
+test_source_rewrite_is_rejected_even_when_plan_review_is_rebound (test_public_merge.PublicMergeTests.test_source_rewrite_is_rejected_even_when_plan_review_is_rebound) ... ok
+test_string_fps_report_works (test_public_merge.PublicMergeTests.test_string_fps_report_works) ... ok
+test_cross_person_group_rejected_in_both_modes (test_speaker_guard.GuardTests.test_cross_person_group_rejected_in_both_modes) ... ok
+test_cross_person_translation_or_missing_boundary_rejected (test_speaker_guard.GuardTests.test_cross_person_translation_or_missing_boundary_rejected) ... ok
+test_missing_stale_and_unresolved_do_not_export (test_speaker_guard.GuardTests.test_missing_stale_and_unresolved_do_not_export) ... ok
+test_text_guess_is_not_audio_evidence (test_speaker_guard.GuardTests.test_text_guess_is_not_audio_evidence) ... ok
+test_two_people_stay_separate_in_both_modes (test_speaker_guard.GuardTests.test_two_people_stay_separate_in_both_modes) ... ok
+test_wrong_original_turn_plan_rejected (test_speaker_guard.GuardTests.test_wrong_original_turn_plan_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.032s
+
+OK

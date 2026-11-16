@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "language": "ru",
+  "overwrite_sources": false,
+  "pause_target": "measure_per_speaker",
+  "handoff_margin": "measure_in_context",
+  "head": true,
+  "tail": true
+}

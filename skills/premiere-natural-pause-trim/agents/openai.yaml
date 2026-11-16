@@ -1,0 +1,4 @@
+interface:
+  display_name: "成片自然停顿整理"
+  short_description: "成片自然停顿整理，独立执行并核验，不自动接续其他制作步骤"
+  default_prompt: "使用 $premiere-natural-pause-trim 处理我指定的文件或序列。"

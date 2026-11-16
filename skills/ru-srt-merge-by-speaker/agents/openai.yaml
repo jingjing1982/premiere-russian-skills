@@ -1,0 +1,4 @@
+interface:
+  display_name: "按说话轮次合并与手势对齐"
+  short_description: "按说话轮次合并与手势对齐，独立执行并核验，不自动接续其他制作步骤"
+  default_prompt: "使用 $ru-srt-merge-by-speaker 处理我指定的文件或序列。"

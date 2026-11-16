@@ -1,0 +1,21 @@
+test_changed_srt_and_project_are_rejected (test_handoff.HandoffTests.test_changed_srt_and_project_are_rejected) ... ok
+test_record_never_overwrites (test_handoff.HandoffTests.test_record_never_overwrites) ... ok
+test_no_equal_width_fallback_without_titles (test_layout_titles.TitleTests.test_no_equal_width_fallback_without_titles) ... ok
+test_no_three_line_fallback (test_layout_titles.TitleTests.test_no_three_line_fallback) ... ok
+test_scripture_exception_is_not_general_book_exception (test_layout_titles.TitleTests.test_scripture_exception_is_not_general_book_exception) ... ok
+test_short_text_stays_one_line_and_special_spaces_remain (test_layout_titles.TitleTests.test_short_text_stays_one_line_and_special_spaces_remain) ... ok
+test_stale_title_text_rejected (test_layout_titles.TitleTests.test_stale_title_text_rejected) ... ok
+test_title_remains_whole_when_safe_two_rows_fit (test_layout_titles.TitleTests.test_title_remains_whole_when_safe_two_rows_fit) ... ok
+test_existing_destinations_and_generated_path_collisions_are_rejected (test_reflow.ReflowTests.test_existing_destinations_and_generated_path_collisions_are_rejected) ... ok
+test_gap_boundaries_overlaps_and_closed_pairs_are_read_only (test_reflow.ReflowTests.test_gap_boundaries_overlaps_and_closed_pairs_are_read_only) ... ok
+test_legacy_close_gaps_flag_is_rejected_without_writes (test_reflow.ReflowTests.test_legacy_close_gaps_flag_is_rejected_without_writes) ... ok
+test_manifest_unknown_cue_and_gap_audit_preserve_times (test_reflow.ReflowTests.test_manifest_unknown_cue_and_gap_audit_preserve_times) ... ok
+test_preferred_examples (test_reflow.ReflowTests.test_preferred_examples) ... ok
+test_punctuation_is_not_a_tail_word (test_reflow.ReflowTests.test_punctuation_is_not_a_tail_word) ... ok
+test_report_source_collision_is_rejected_without_writes (test_reflow.ReflowTests.test_report_source_collision_is_rejected_without_writes) ... ok
+test_spaces_punctuation_and_nbsp_are_measured_verbatim (test_reflow.ReflowTests.test_spaces_punctuation_and_nbsp_are_measured_verbatim) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.434s
+
+OK

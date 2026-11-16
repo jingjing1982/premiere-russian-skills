@@ -1,0 +1,22 @@
+test_changed_srt_and_project_are_rejected (test_handoff.HandoffTests.test_changed_srt_and_project_are_rejected) ... ok
+test_record_never_overwrites (test_handoff.HandoffTests.test_record_never_overwrites) ... ok
+test_alternating_bilingual_lines (test_srt_to_heygen_csv.ConversionTests.test_alternating_bilingual_lines) ... ok
+test_bad_build_not_published (test_srt_to_heygen_csv.ConversionTests.test_bad_build_not_published) ... ok
+test_batch_coverage_and_missing_or_duplicate_parts (test_srt_to_heygen_csv.ConversionTests.test_batch_coverage_and_missing_or_duplicate_parts) ... ok
+test_blank_unknown_and_wrong_known_speaker_rejected (test_srt_to_heygen_csv.ConversionTests.test_blank_unknown_and_wrong_known_speaker_rejected) ... ok
+test_changed_time_text_and_missing_row_rejected (test_srt_to_heygen_csv.ConversionTests.test_changed_time_text_and_missing_row_rejected) ... ok
+test_confirmed_mixed_speakers_never_pass_midpoint (test_srt_to_heygen_csv.ConversionTests.test_confirmed_mixed_speakers_never_pass_midpoint) ... ok
+test_correct_conversion (test_srt_to_heygen_csv.ConversionTests.test_correct_conversion) ... ok
+test_cross_speaker_default_blocks_upload_and_reports_candidate (test_srt_to_heygen_csv.ConversionTests.test_cross_speaker_default_blocks_upload_and_reports_candidate) ... ok
+test_crossing_boundary_rejected (test_srt_to_heygen_csv.ConversionTests.test_crossing_boundary_rejected) ... ok
+test_literal_source_ok_is_preserved_without_relaxing_unknown_language (test_srt_to_heygen_csv.ConversionTests.test_literal_source_ok_is_preserved_without_relaxing_unknown_language) ... ok
+test_offset_before_assignment (test_srt_to_heygen_csv.ConversionTests.test_offset_before_assignment) ... ok
+test_reviewed_timing_shift_preserves_text_and_time (test_srt_to_heygen_csv.ConversionTests.test_reviewed_timing_shift_preserves_text_and_time) ... ok
+test_short_second_voice_not_hidden_by_half_second_tolerance (test_srt_to_heygen_csv.ConversionTests.test_short_second_voice_not_hidden_by_half_second_tolerance) ... ok
+test_stale_review_rejected (test_srt_to_heygen_csv.ConversionTests.test_stale_review_rejected) ... ok
+test_overlong_srt_never_published_as_final_upload (test_upload_checked.PublicUploadTests.test_overlong_srt_never_published_as_final_upload) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.559s
+
+OK

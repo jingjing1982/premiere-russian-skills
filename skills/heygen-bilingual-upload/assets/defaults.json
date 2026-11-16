@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "language": "ru",
+  "overwrite_sources": false,
+  "speaker_tolerance_ms": 500,
+  "notes": "",
+  "require_speaker": true
+}

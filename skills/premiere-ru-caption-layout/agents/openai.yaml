@@ -1,0 +1,4 @@
+interface:
+  display_name: "调整俄语字幕换行"
+  short_description: "调整俄语字幕换行，独立执行并核验，不自动接续其他制作步骤"
+  default_prompt: "使用 $premiere-ru-caption-layout 处理我指定的文件或序列。"
