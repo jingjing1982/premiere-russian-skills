@@ -1,0 +1,59 @@
+{"prepared_cuts": 0, "prepared_moves": 0, "premiere_contacted": false, "bundle": "<temporary-test-directory>"}
+{"prepared_cuts": 0, "prepared_moves": 1, "premiere_contacted": false, "bundle": "<temporary-test-directory>"}
+{"prepared_cuts": 0, "prepared_moves": 1, "premiere_contacted": false, "bundle": "<temporary-test-directory>"}
+Verified local state 1/2
+Verified local state 1/2
+{"completed": 1, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 2/2
+{"completed": 2, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 1/2
+{"completed": 1, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 1/2
+Verified local state 2/2
+{"completed": 2, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 2/2
+{"completed": 2, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 1/2
+Verified local state 2/2
+{"completed": 2, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 1/2
+{"completed": 1, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 2/2
+{"completed": 2, "total": 2, "saved_audit": {"mocked": true}}
+Verified local state 1/2
+test_audience_with_interpreter_voice_cannot_move_v3 (test_public_workflow.PublicWorkflow.test_audience_with_interpreter_voice_cannot_move_v3) ... ok
+test_interpreter_requires_audio_and_no_protected_overlap (test_public_workflow.PublicWorkflow.test_interpreter_requires_audio_and_no_protected_overlap) ... ok
+test_keep_uncertain_is_zero_action_supported (test_public_workflow.PublicWorkflow.test_keep_uncertain_is_zero_action_supported) ... ok
+test_prepare_requests_checks_frozen_review (test_public_workflow.PublicWorkflow.test_prepare_requests_checks_frozen_review) ... ok
+test_preview_cannot_be_main (test_public_workflow.PublicWorkflow.test_preview_cannot_be_main) ... ok
+test_real_frame_extraction_and_cache (test_public_workflow.PublicWorkflow.test_real_frame_extraction_and_cache) ... ok
+test_sampling_respects_source_offset (test_public_workflow.PublicWorkflow.test_sampling_respects_source_offset) ... ok
+test_saved_metadata_change_is_rejected (test_public_workflow.PublicWorkflow.test_saved_metadata_change_is_rejected) ... ok
+test_setup_build_and_vertical_move_saved_audit (test_public_workflow.PublicWorkflow.test_setup_build_and_vertical_move_saved_audit) ... ok
+test_stale_source_evidence_rejected (test_public_workflow.PublicWorkflow.test_stale_source_evidence_rejected) ... ok
+test_unneeded_cuts_and_missing_cut_review_rejected (test_public_workflow.PublicWorkflow.test_unneeded_cuts_and_missing_cut_review_rejected) ... ok
+test_unreviewed_or_partial_coverage_rejected (test_public_workflow.PublicWorkflow.test_unreviewed_or_partial_coverage_rejected) ... ok
+test_cut_and_move_preserve_source_offset_and_audio (test_track_sort.PlanTests.test_cut_and_move_preserve_source_offset_and_audio) ... ok
+test_frame_timecode (test_track_sort.PlanTests.test_frame_timecode) ... ok
+test_overlap_rejected (test_track_sort.PlanTests.test_overlap_rejected) ... ok
+test_prefix_recovery_rejects_partial_cut (test_track_sort.PlanTests.test_prefix_recovery_rejects_partial_cut) ... ok
+test_recut_rejected (test_track_sort.PlanTests.test_recut_rejected) ... ok
+test_unsupported_speed_rejected (test_track_sort.PlanTests.test_unsupported_speed_rejected) ... ok
+test_wrong_audio_source_rejected (test_track_sort.PlanTests.test_wrong_audio_source_rejected) ... ok
+test_continuous_batch_audit_failure_stops_next_batch (test_track_sort.RunnerTests.test_continuous_batch_audit_failure_stops_next_batch) ... ok
+test_continuous_batches_reuse_previous_full_audit (test_track_sort.RunnerTests.test_continuous_batches_reuse_previous_full_audit) ... ok
+test_continuous_lost_reply_second_batch_recovers_once (test_track_sort.RunnerTests.test_continuous_lost_reply_second_batch_recovers_once) ... ok
+test_diverged_timeline_stops_before_write (test_track_sort.RunnerTests.test_diverged_timeline_stops_before_write) ... ok
+test_local_checks_and_phase_global_reads (test_track_sort.RunnerTests.test_local_checks_and_phase_global_reads) ... ok
+test_lost_reply_recovers_without_duplicate_cut (test_track_sort.RunnerTests.test_lost_reply_recovers_without_duplicate_cut) ... ok
+test_move_only_plan_pilots_without_adding_cuts (test_track_sort.RunnerTests.test_move_only_plan_pilots_without_adding_cuts) ... ok
+test_new_process_still_performs_recovery_audit (test_track_sort.RunnerTests.test_new_process_still_performs_recovery_audit) ... ok
+test_prepare_is_offline_and_rejects_changed_input (test_track_sort.RunnerTests.test_prepare_is_offline_and_rejects_changed_input) ... ok
+test_prepared_guards_in_mock_javascript_runtime (test_track_sort.RunnerTests.test_prepared_guards_in_mock_javascript_runtime) ... ok
+test_saved_audit_failure_prevents_following_move (test_track_sort.RunnerTests.test_saved_audit_failure_prevents_following_move) ... ok
+test_tampered_operation_rejected_before_connection (test_track_sort.RunnerTests.test_tampered_operation_rejected_before_connection) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.620s
+
+OK

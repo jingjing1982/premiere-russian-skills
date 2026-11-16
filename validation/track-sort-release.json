@@ -1,0 +1,58 @@
+{
+  "release": "1.1.0",
+  "suites": [
+    {
+      "skill": "heygen-bilingual-upload",
+      "tests": 17,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-cap-subtitle-gaps",
+      "tests": 14,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-lecture-track-sort",
+      "tests": 31,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-natural-pause-trim",
+      "tests": 11,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "premiere-ru-caption-layout",
+      "tests": 16,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "ru-srt-merge-by-gaps",
+      "tests": 32,
+      "passed": true,
+      "skill_metadata_valid": true
+    },
+    {
+      "skill": "ru-srt-merge-by-speaker",
+      "tests": 32,
+      "passed": true,
+      "skill_metadata_valid": true
+    }
+  ],
+  "total_test_executions": 153,
+  "all_seven_install": true,
+  "single_track_sort_install": true,
+  "identical_reinstall_no_overwrite": true,
+  "modified_skill_refused_unchanged": true,
+  "metadata_all_passed": true,
+  "link_or_privacy_errors": [],
+  "actual_ffmpeg_sampling_and_cache_test": true,
+  "tests_use_synthetic_projects_and_mock_bridge": true,
+  "pr_projects_read_or_modified": false,
+  "different_machine_pr_tested": false
+}

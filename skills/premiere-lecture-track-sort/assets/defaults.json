@@ -1,0 +1,10 @@
+{
+  "schema": "track-sort-defaults/v1",
+  "audience_video_track": "V2",
+  "interpreter_video_track": "V3",
+  "batch_operations": 20,
+  "sample_workers": 2,
+  "thinking_onsets": "preserve",
+  "uncertain_ranges": "preserve_and_report",
+  "preview_only": true
+}

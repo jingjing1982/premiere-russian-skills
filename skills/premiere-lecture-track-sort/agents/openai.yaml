@@ -1,0 +1,4 @@
+interface:
+  display_name: "讲座观众与翻译分轨"
+  short_description: "在独立预览中识别观众和翻译并分轨，保留音频、字幕及已有切分"
+  default_prompt: "使用 $premiere-lecture-track-sort 在独立预览中处理指定序列，将观众移V2、其余翻译移V3，保留音频位置、链接和字幕，核验后结束。"

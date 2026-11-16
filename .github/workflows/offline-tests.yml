@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        skill: [ru-srt-merge-by-gaps, ru-srt-merge-by-speaker, heygen-bilingual-upload, premiere-ru-caption-layout, premiere-cap-subtitle-gaps, premiere-natural-pause-trim]
+        skill: [ru-srt-merge-by-gaps, ru-srt-merge-by-speaker, heygen-bilingual-upload, premiere-ru-caption-layout, premiere-cap-subtitle-gaps, premiere-natural-pause-trim, premiere-lecture-track-sort]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -18,3 +18,19 @@ jobs:
       - name: Run offline tests only
         working-directory: skills/${{ matrix.skill }}/scripts
         run: python -m unittest discover -p 'test_*.py' -v
+
+  track-sort-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install declared Python dependencies
+        run: python -m pip install -r skills/premiere-lecture-track-sort/requirements.txt
+      - name: Run Windows offline tests only
+        working-directory: skills/premiere-lecture-track-sort/scripts
+        run: python -X utf8 -m unittest discover -p 'test_*.py' -v
