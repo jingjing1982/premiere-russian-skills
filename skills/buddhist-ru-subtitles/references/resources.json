@@ -1,0 +1,10 @@
+{
+  "glossary": {
+    "selected": "glossary-ru.txt",
+    "sha256": "2ecd25276295ad721f8e8d326039232b9336ea5094f948f38505c39f1d1eb4a3",
+    "entry_count": 800
+  },
+  "translation_rules": "translation-rules.txt",
+  "path_base": "directory_containing_resources_json",
+  "external_rules": null
+}

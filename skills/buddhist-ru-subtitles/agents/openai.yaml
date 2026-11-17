@@ -1,0 +1,6 @@
+interface:
+  display_name: "中俄佛法双语字幕"
+  short_description: "完整读取指定术语库，按既定佛法翻译规则制作俄上中下双语SRT字幕"
+  default_prompt: "使用 $buddhist-ru-subtitles，按随包完整术语库及翻译规则将这份中文字幕翻译成俄上中下的双语SRT。"
+policy:
+  allow_implicit_invocation: true

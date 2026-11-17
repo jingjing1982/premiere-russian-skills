@@ -1,7 +1,8 @@
 {
   "format": "standalone-codex-skills/v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "skills": [
+    "buddhist-ru-subtitles",
     "heygen-bilingual-upload",
     "premiere-cap-subtitle-gaps",
     "premiere-lecture-track-sort",
@@ -143,7 +144,17 @@
     "skills/ru-srt-merge-by-speaker/scripts/test_handoff.py": "9a9d82e7677eb3f6ad96624d9aa05f7e45aa5211141cc995c1b11810aec116ce",
     "skills/ru-srt-merge-by-speaker/scripts/test_public_merge.py": "6e9a7ce010863de788c37751f039bc14493d22b2b2cdf3a871714ee16575c675",
     "skills/ru-srt-merge-by-speaker/scripts/test_speaker_guard.py": "7d102dfe28437559b57581831f09b8e02e9cd21b00a0c56827ac8c5fdcfaa646",
-    "skills/ru-srt-merge-by-speaker/SKILL.md": "67f240510f8a84ea6fdfed732de602e809746eb35174d70d2d41503082a2e607"
+    "skills/ru-srt-merge-by-speaker/SKILL.md": "67f240510f8a84ea6fdfed732de602e809746eb35174d70d2d41503082a2e607",
+    "skills/buddhist-ru-subtitles/requirements.txt": "1b8bcfd4236a0d0ce0b18559feab1d0a9985da2888f17c9702997a5cfc6afbdb",
+    "skills/buddhist-ru-subtitles/SKILL.md": "8ca87a73fbec932b9c58bd6545439211fb2045f4e8b18036dfdc5051fb72c01f",
+    "skills/buddhist-ru-subtitles/agents/openai.yaml": "d6c56a0ee2ec9462ddc2b4f2bd8b60cc014a5817984966a2ff51dcc02fab06d6",
+    "skills/buddhist-ru-subtitles/references/glossary-ru.txt": "2ecd25276295ad721f8e8d326039232b9336ea5094f948f38505c39f1d1eb4a3",
+    "skills/buddhist-ru-subtitles/references/resources.json": "f26c6ca3fe118cdefa0ca5acea1d83c46feef56017e3d9957dc2c3741befd169",
+    "skills/buddhist-ru-subtitles/references/subtitle-rules.md": "1718b000057667c9d36e70fbb3c5324d102eb697a1a4d28f10c5fe18cd162a85",
+    "skills/buddhist-ru-subtitles/references/translation-rules.txt": "bbc5182431e9f9fbbeec7ff9fa0b8ce47bfb685dfc6e1ab52ce9b7ec7fd2aa47",
+    "skills/buddhist-ru-subtitles/scripts/preflight.py": "e2a62687aba86971cac18f30246b297239b3fbe3e3a3c99a3f5a0bfb8c03a46e",
+    "skills/buddhist-ru-subtitles/scripts/srt_tool.py": "f94403ada4156b41a2f52b35d3acf0e2602b2f68a3b3f9f0d39940871a49295c",
+    "skills/buddhist-ru-subtitles/scripts/test_srt_tool.py": "172e170661d3677f9caee8dd777d084c9ba242f50069ab4955d1c53c47ae00ee"
   },
   "font_files_bundled": false,
   "private_bridge_bundled": false

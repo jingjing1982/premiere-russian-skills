@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        skill: [ru-srt-merge-by-gaps, ru-srt-merge-by-speaker, heygen-bilingual-upload, premiere-ru-caption-layout, premiere-cap-subtitle-gaps, premiere-natural-pause-trim, premiere-lecture-track-sort]
+        skill: [buddhist-ru-subtitles, ru-srt-merge-by-gaps, ru-srt-merge-by-speaker, heygen-bilingual-upload, premiere-ru-caption-layout, premiere-cap-subtitle-gaps, premiere-natural-pause-trim, premiere-lecture-track-sort]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
