@@ -1,0 +1,74 @@
+{
+  "release": "1.3.0",
+  "date": "2026-11-18",
+  "suites": [
+    {
+      "skill": "buddhist-ru-subtitles",
+      "tests": 13,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "heygen-bilingual-upload",
+      "tests": 19,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "premiere-cap-subtitle-gaps",
+      "tests": 14,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "premiere-lecture-track-sort",
+      "tests": 31,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "premiere-natural-pause-trim",
+      "tests": 20,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "premiere-ru-caption-layout",
+      "tests": 16,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "ru-srt-merge-by-gaps",
+      "tests": 43,
+      "passed": true,
+      "metadata_valid": true
+    },
+    {
+      "skill": "ru-srt-merge-by-speaker",
+      "tests": 43,
+      "passed": true,
+      "metadata_valid": true
+    }
+  ],
+  "test_executions": 199,
+  "local_markdown_links_valid": true,
+  "selected_private_path_scan_passed": true,
+  "installation": {
+    "all_eight_verified": true,
+    "identical_install_skipped": true,
+    "custom_modification_preserved": true,
+    "disposable_test_copy_bytes_removed": 778852
+  },
+  "new_behavior": [
+    "overlap_export_block",
+    "unanchored_turn_end_backfill",
+    "same_turn_continuity",
+    "seam_residual_gate_bound_to_source_and_cuts",
+    "unflagged_short_speaker_review",
+    "overlapping_video_origin_regression"
+  ],
+  "real_premiere_operations_performed": false,
+  "cross_machine_premiere_validation": false,
+  "heygen_uploaded": false
+}

@@ -1,5 +1,5 @@
 """Synthetic project graph tests only; never opens or edits Premiere."""
-import argparse,base64,gzip,json,struct,tempfile,unittest
+import argparse,base64,gzip,json,struct,tempfile,unittest,hashlib
 from pathlib import Path
 import xml.etree.ElementTree as E
 from native_cut import prepare,audit
@@ -41,7 +41,7 @@ class NativeTests(unittest.TestCase):
     def test_prepare_and_audit_block_unrelated_track_mutation(self):
         with tempfile.TemporaryDirectory() as d:
             d=Path(d);root=fixture();raw=gzip.compress(E.tostring(root));source=d/'source.prproj';preview=d/'preview.prproj'
-            source.write_bytes(raw);preview.write_bytes(raw);cuts=d/'cuts.json';cuts.write_text(json.dumps({'cuts':[[200,300]],'protected':[],'review_reference':'Synthetic only'}))
+            source.write_bytes(raw);preview.write_bytes(raw);cuts=d/'cuts.json';cuts.write_text(json.dumps({'cuts':[[200,300]],'protected':[],'review_reference':'Synthetic only','seam_review':{'fps':25,'duration':1000,'cuts':[[200,300]],'preview_sha256':hashlib.sha256(raw).hexdigest(),'sequence_uid':'synthetic-seq','shots':[{'id':'one','start':0,'end':1000,'evidence':'Synthetic offline reviewed shot'}]}}))
             job=d/'job';prepare(argparse.Namespace(source=str(source),preview=str(preview),uid='synthetic-seq',cuts=str(cuts),output=str(job)))
             a=argparse.Namespace(job=str(job/'job.json'),done=0,output=str(d/'before.json'));self.assertEqual(audit(a)['verified_steps'],0)
             root.find(".//*[@ObjectUID='a']/TrackVolume").text='0.1';preview.write_bytes(gzip.compress(E.tostring(root)))

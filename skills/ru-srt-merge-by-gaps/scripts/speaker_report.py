@@ -13,13 +13,21 @@ def write_report(result,path):
     def span(ms):
         return f'{ms/1000:+.3f}秒'+(f'（{round(ms*fps/1000):+d}帧）' if fps else '')
     out=[f"# {src.get('sequence_name','序列')}：合并字幕定位核对",'',
-      f"来源工程：{src.get('project','未记录')}",f"来源SHA256：{src.get('source_sha256','未记录')}",
+      f"来源工程：{src.get('project',src.get('project_path','未记录'))}",f"来源SHA256：{src.get('source_sha256','未记录')}",
       f"序列UID：{src.get('sequence_uid','未记录')}；帧率：{fps or '未记录'}。",'',
       f"原字幕{sum(len(r['cue_ids']) for r in rows)}条 → 合并{len(rows)}条；说话轮次{len(result['turns'])}个；红点{len(result['anchors'])}个。",
       f"{result['speed']}音节/秒，不另加停顿；每条原跨度及规划时长均不超过{result.get('max_duration_ms',90000)/1000:g}秒。每段首个红点优先，其余点只报告。",
       '这是字幕和画面证据下的规划估算，没有实际俄语生成音频的逐词时间验证，不代表口型已精确同步。',
       '字幕按原文顺序逐条合并；未改PR、原字幕或红点。存在接缝/边界疑点时，SRT是核对稿，不是无冲突成片方案。','',
-      '## 需要处理的接缝','',
+      '整份SRT无重叠已核验；首锚按当前确认的取舍定位，无锚点段必要时整体移动。','',
+      '说话轮次模式：整轮无红点时从原轮次末端倒排，余量优先集中在轮次前部；拆成多条仍连续。仅两侧固定锚点无法兼顾时保留集中接缝，报告偏差与位置。字幕位置调整不等于视频已经剪好。','',
+      '## 无重叠排布调整','']
+    for a in result.get('approved_anchor_shifts',[]):
+        out.append(f"- 获准首锚取舍 {a['anchor_id']}：整段移动{span(a['shift_ms'])}，PR红点不改；确认依据：{a['authorization']}。最新偏差见逐点表。")
+    for a in result.get('timing_adjustments',[]):
+        out.append(f"- 第{a['group']}条：{fmt(a['before_start_ms'])}—{fmt(a['before_end_ms'])} → {fmt(a['start_ms'])}—{fmt(a['end_ms'])}；移动{span(a['shift_ms'])}。{a['reason']}；画面需要后续人工匹配。")
+    if not result.get('timing_adjustments'):out.append('本次无需调整。')
+    out+=['','## 需要处理的接缝','',
       '|前段→后段|前段结束→后段开始|空隙＋／重叠－|同一轮次|','|---|---|---|---|']
     problems=[j for j in result['joins'] if j['needs_review']]
     for j in problems:
@@ -36,7 +44,7 @@ def write_report(result,path):
         if '待' in t['speaker']:out.append(f"- {t['speaker']}，原cue {t['cue_ids']}；已独立保留，未猜并进其他人。")
     out+=['','## 红点逐点定位','', '|红点|PR帧时码|原cue／合并条|对应中俄词语|主锚|预计偏差|','|---|---|---|---|---|---|']
     for a in result['anchors']:
-        out.append(f"|{a['id']}|{tc(a['marker_ms'])}|{a['cue_id']}／{a['group']}|{a['target_zh']} / {a['target_ru'] or '原俄语致谢句末'}|{'是' if a['primary'] else '否'}|{a['error_ms']/1000:+.3f}秒|")
+        out.append(f"|{a['id']}|{tc(a['marker_ms'])}|{a['cue_id']}／{a['group']}|{a['target_zh']} / {a['target_ru'] or '对应原俄语句末'}|{'是' if a['primary'] else '否'}|{a['error_ms']/1000:+.3f}秒|")
     out+=['','### 定位依据与替代方案','']
     for a in result['anchors']:
         out.append(f"- {a['id']}：{a['evidence']}。对齐基准：{a['alignment_basis']}。单独对准此点：第{a['group']}条起止 {fmt(a['alternative_start_ms'])}—{fmt(a['alternative_end_ms'])}；整条移动 {span(a['shift_ms'])}。")

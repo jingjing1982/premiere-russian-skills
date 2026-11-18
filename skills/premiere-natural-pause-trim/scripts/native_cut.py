@@ -8,6 +8,7 @@ import argparse, copy, hashlib, json, shutil
 from saved_audit import load, records, link_pairs, graph
 from extract_saved_captions import extract, TPS
 from frame_plan import plan
+from seam_audit import audit as audit_seams
 
 def read(p):return json.loads(Path(p).read_text(encoding='utf-8-sig'))
 def write(p,x):
@@ -43,6 +44,17 @@ def snapshot(path,uid):
                     if 'transition' in n.tag.lower() and (list(n) or (n.text or '').strip()):
                         raise ValueError('Transitions require separate supported audit; no automatic extract')
     return cap,root,ix,ux,rec
+def reviewed_seams(cuts, fps, duration, preview_sha256, uid):
+    data=cuts.get('seam_review')
+    if not isinstance(data,dict):raise ValueError('Missing visible-shot seam_review')
+    if data.get('preview_sha256')!=preview_sha256 or data.get('sequence_uid')!=uid:
+        raise ValueError('Stale seam review source identity')
+    if data.get('fps')!=fps or data.get('duration')!=duration or data.get('cuts')!=cuts['cuts']:
+        raise ValueError('Seam review differs from deletion plan')
+    checked=audit_seams(data)
+    if not checked['passed']:raise ValueError('Unresolved shot residuals or missing seam coverage')
+    return checked
+
 def prepare(args):
     source=Path(args.source).resolve();preview=Path(args.preview).resolve();out=Path(args.output).resolve()
     if source==preview:raise ValueError('Only an independent preview may be changed')
@@ -67,10 +79,11 @@ def prepare(args):
       'cues':[[c['start_ticks']//tpf,c['end_ticks']//tpf] for c in cap['cues']],
       'protected':cuts.get('protected',[]),'cuts':cuts['cuts']}
     expected=plan(data)
+    seam_result=reviewed_seams(cuts,int(fps),duration,sha(preview),args.uid)
     out.mkdir(parents=True);shutil.copy2(preview,out/'baseline.prproj')
     job={'schema':'native-extract/v1','source':str(source),'source_sha256':sha(source),'preview':str(preview),
       'baseline_sha256':sha(out/'baseline.prproj'),'uid':args.uid,'tpf':tpf,'fps':int(fps),
-      'input':data,'expected':expected,'review_reference':cuts['review_reference'],'steps':[]}
+      'input':data,'expected':expected,'review_reference':cuts['review_reference'],'seam_review':cuts['seam_review'],'seam_plan_result':seam_result,'steps':[]}
     shape='''function shape(s){var out=[];for(var k=0;k<2;k++){var ts=k?s.audioTracks:s.videoTracks;for(var t=0;t<ts.numTracks;t++)for(var i=0;i<ts[t].clips.numItems;i++){var c=ts[t].clips[i];if(c.getSpeed()!==1||c.isSpeedReversed())throw Error("Unsupported speed");function fr(v){var n=Number(v.ticks)/TPF;if(n!==Math.round(n))throw Error("Subframe item");return n;}out.push([k,t,fr(c.start),fr(c.end),fr(c.inPoint),fr(c.outPoint),c.projectItem.getMediaPath()]);}}return out;}'''
     header='(function(){if(app.project.path!=='+json.dumps(str(preview))+')throw Error("Wrong preview");var TPF='+str(tpf)+';var s=null;for(var i=0;i<app.project.sequences.numSequences;i++){var z=app.project.sequences[i];if(z.sequenceID==='+json.dumps(args.uid)+')s=z;}if(!s||String(s.timebase)!=='+json.dumps(str(tpf))+')throw Error("Wrong sequence/timebase");'+shape
     prior=data['rows'];done=[]
@@ -93,6 +106,7 @@ def audit(args):
     if sha(job['source'])!=job['source_sha256'] or sha(directory/'baseline.prproj')!=job['baseline_sha256']:raise ValueError('Source/baseline changed')
     cap,br,bi,bu,brec=snapshot(directory/'baseline.prproj',job['uid'])
     acap,ar,ai,au,arec=snapshot(job['preview'],job['uid'])
+    reviewed_seams({'cuts':job['input']['cuts'],'seam_review':job['seam_review']},job['fps'],job['input']['duration'],job['baseline_sha256'],job['uid'])
     selected=[s['cut'] for s in job['steps'][:n]];expected=plan(dict(job['input'],cuts=selected));tpf=job['tpf']
     if [r for r,o in arec]!=expected['rows']:raise ValueError('Saved AV state differs')
     def mapped(t):return t-sum(max(0,min(t,b*tpf)-a*tpf) for a,b in selected)

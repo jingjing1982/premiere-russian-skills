@@ -19,5 +19,9 @@ description: 按字幕间隙将已有俄中字幕合并并按红色手势锚点�
 
 读取references/operation.md、references/alignment.md及references/speaker-mode.md中的说话人证据格式。仅执行间隙模式：任何正字幕间隙均划开大区间，换人同样强制分开；每组源跨度及计算时长均≤默认90秒。区间内多组联合定位、严格零间隙；一个锚点组固定时其前段倒排、后段接排。多锚点可在自然cue边界合理拆组，不能借拆组制造空隙。不可同时满足时交冲突报告，不暗中移动红点、加速或改字。
 先独立建立源cue说话轮次与证据，核查每次交接及短句；不把观众镜头当换人。合并仅连接整cue，原换行转空格，正文其他字符不变。俄文读法展开仅供计音节，数字/缩写未知读法不得算零。
-以extract_saved_captions输出作为独立来源；计划绑定source_snapshot_sha256，文字不能手工重写。调用`python scripts/merge_checked.py source.json plan.json 新输出目录 --mode gaps`。计划格式见references/alignment.md；speaker_review必需，mode只能gaps或省略，max_duration_ms可明确覆盖默认值。负起点/不可能排布先输出具体冲突，不造非法SRT。写handoff为merged-review。
+以extract_saved_captions输出作为独立来源；计划绑定source_snapshot_sha256，文字不能手工重写。调用`python scripts/merge_checked.py source.json plan.json 新输出目录 --mode gaps`。计划格式见references/alignment.md；speaker_review必需，mode只能gaps或省略，max_duration_ms可明确覆盖默认值。任何同人或跨人重叠、负起点或不可能排布都先输出具体冲突，不导出SRT；nonoverlap.py在导出前和回读后硬检查。写handoff为merged-review。
 
+
+## 任务收尾
+
+开始与交付前遵循[任务目录、预览和收尾](references/task-lifecycle.md)。不重复创建备份、预览或依赖环境；不清理用户已有工程和素材。

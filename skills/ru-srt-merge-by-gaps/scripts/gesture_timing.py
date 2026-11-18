@@ -8,6 +8,7 @@ from fractions import Fraction as F
 from math import ceil, floor
 from pathlib import Path
 from speaker_guard import validate_speakers,check_group
+from nonoverlap import validate as validate_nonoverlap,validate_srt
 
 VOWELS = set('аеёиоуыэюяАЕЁИОУЫЭЮЯ')
 
@@ -251,6 +252,7 @@ def solve(plan):
 
 def export(plan, output):
     result = solve(plan)
+    validate_nonoverlap(result["groups"])
     suffix = '_核对稿' if result['status'] == 'review_conflicts' else '_规划稿'
     output = Path(output)
     files = [output/('合并字幕'+suffix+'.srt'), output/'计算与锚点核对.json', output/'锚点定位.csv']
@@ -260,6 +262,7 @@ def export(plan, output):
     output.mkdir(parents=True, exist_ok=True)
     files[0].write_bytes(b'\xef\xbb\xbf'+text.replace('\n','\r\n').encode('utf-8'))
     saved = files[0].read_text('utf-8-sig')
+    validate_srt(saved)
     require(saved == text, 'SRT readback mismatch')
     files[1].write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     buf = io.StringIO(newline='')

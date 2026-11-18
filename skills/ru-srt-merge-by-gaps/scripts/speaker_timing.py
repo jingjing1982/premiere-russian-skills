@@ -5,6 +5,7 @@ from math import ceil
 from pathlib import Path
 from gesture_timing import require,flat,count,spoken,fmt,rounded
 from speaker_guard import validate_speakers,check_group
+from nonoverlap import schedule,validate as validate_nonoverlap,validate_srt,validate_turn_continuity
 
 def make_groups(cues,turns,speed,grid,forbidden_cuts=(),max_ms=90000):
     cmap={c['id']:c for c in cues};out=[]
@@ -31,9 +32,9 @@ def make_groups(cues,turns,speed,grid,forbidden_cuts=(),max_ms=90000):
     return out
 
 def solve(plan):
-    max_ms=plan.get('max_duration_ms',90000)
-    require(type(max_ms) is int and max_ms>0,'Invalid duration cap')
-    require(plan.get('extra_pause_ms',0)==0,'Extra pauses are unsupported')
+    max_ms=plan.get("max_duration_ms",90000)
+    require(type(max_ms) is int and max_ms>0,"Invalid duration cap")
+    require(plan.get("extra_pause_ms",0)==0,"Extra pauses are unsupported")
     require(plan.get('mode')=='speaker_first_anchor','Explicit speaker_first_anchor mode required')
     speed=F(str(plan.get('speed','5.2')));grid=plan.get('grid_ms',1)
     require(speed>0 and isinstance(grid,int) and grid>0,'Bad speed/grid')
@@ -81,21 +82,35 @@ def solve(plan):
           'duration_ms':dur,'syllables':n,'primary_anchor_id':aa[0]['source']['id'] if aa else None,
           'anchors_internal':aa,'ru':' '.join(flat(c['ru']) for c in cs),'zh':' '.join(flat(c['zh']) for c in cs),
           'sentence_split_exception':g.get('sentence_split_exception',False)})
+    approved={}
+    primary_ids={r['primary_anchor_id'] for r in rows if r['primary_anchor_id']}
+    for change in plan.get('approved_anchor_shifts',[]):
+        aid=change.get('anchor_id');shift=change.get('shift_ms')
+        require(aid in primary_ids and aid not in approved,'Invalid/duplicate approved primary anchor shift')
+        require(type(shift) is int and shift%grid==0 and bool(change.get('authorization')),
+                'Anchor shift requires explicit recorded user decision and frame-aligned milliseconds')
+        approved[aid]=change
     for turn in turns:
         rr=[r for r in rows if r['turn_id']==turn['id']];anchored=[i for i,r in enumerate(rr) if r['anchors_internal']]
         if anchored:
             first=anchored[0]
             for i in anchored:
-                rr[i]['start_ms']=rounded(rr[i]['anchors_internal'][0]['ideal'],grid)
+                aid=rr[i]['primary_anchor_id']
+                rr[i]['start_ms']=rounded(rr[i]['anchors_internal'][0]['ideal'],grid)+approved.get(aid,{}).get('shift_ms',0)
                 rr[i]['placement']='first_anchor'
             for i in range(first-1,-1,-1):rr[i]['start_ms']=rr[i+1]['start_ms']-rr[i]['duration_ms'];rr[i]['placement']='backfill_to_first_anchor'
             for i in range(first+1,len(rr)):
                 if not rr[i]['anchors_internal']:rr[i]['start_ms']=rr[i-1]['start_ms']+rr[i-1]['duration_ms'];rr[i]['placement']='continue_previous'
         else:
+            # Keep a whole unanchored turn together at its original end: put
+            # spare time at the handoff, not inside/after a continuous answer.
+            block_start=rounded(F(rr[-1]['source_end_ms']),grid)-sum(r['duration_ms'] for r in rr)
             for i,r in enumerate(rr):
-                r['start_ms']=rounded(F(r['source_start_ms']),grid) if i==0 else rr[i-1]['start_ms']+rr[i-1]['duration_ms']
-                r['placement']='source_turn_start' if i==0 else 'continue_previous'
+                r['start_ms']=block_start if i==0 else rr[i-1]['start_ms']+rr[i-1]['duration_ms']
+                r['placement']='source_turn_end_backfill' if i==0 else 'continue_previous'
         for r in rr:r['end_ms']=r['start_ms']+r['duration_ms']
+    timing_adjustments=schedule(rows,plan.get('video_end_ms'),grid)
+    validate_turn_continuity(rows)
     anchor_rows=[]
     for r in rows:
         for a in r.pop('anchors_internal'):
@@ -124,19 +139,24 @@ def solve(plan):
     return {'source':plan.get('source'),'speaker_review':plan['speaker_review'],'speaker_attribution_checked':True,
       'mode':plan['mode'],'max_duration_ms':max_ms,'speed':str(speed),'grid_ms':grid,'turns':turns,
       'groups':rows,'anchors':anchor_rows,'joins':joins,'source_issues':source_issues,'boundary_issues':issues,
+      'timing_adjustments':timing_adjustments,'approved_anchor_shifts':list(approved.values()),'nonoverlap_verified':True,
+      'unanchored_turn_policy':'backfill_from_source_turn_end','avoidable_internal_gaps_verified':True,
       'status':'review_conflicts' if conflicts else 'estimated_not_audio_verified',
       'minimum_groups_under_sentence_and_90s_constraints':len(rows) if not plan.get('groups') else None}
 
 def export(plan,output):
     max_ms=plan.get("max_duration_ms",90000)
     result=solve(plan);out=Path(output)
+    validate_nonoverlap(result['groups'])
+    validate_turn_continuity(result['groups'])
     require(not any(r['start_ms']<0 for r in result['groups']),'Negative start: report/resolve before SRT export, do not clamp')
     suffix='核对稿' if result['status']=='review_conflicts' else '规划稿'
     srt=out/('合并双语_'+suffix+'.srt');report=out/'计算与定位.json'
     require(not srt.exists() and not report.exists() and not (out/'定位报告.md').exists(),'Output exists')
     text='\n\n'.join(f"{r['group']}\n{fmt(r['start_ms'])} --> {fmt(r['end_ms'])}\n{r['ru']}\n{r['zh']}" for r in result['groups'])+'\n'
     out.mkdir(parents=True,exist_ok=True);srt.write_bytes(b'\xef\xbb\xbf'+text.replace('\n','\r\n').encode('utf-8'))
-    blocks=srt.read_text('utf-8-sig').strip('\n').split('\n\n');cmap={c['id']:c for c in plan['cues']}
+    saved=srt.read_text('utf-8-sig');validate_srt(saved)
+    blocks=saved.strip('\n').split('\n\n');cmap={c['id']:c for c in plan['cues']}
     require(len(blocks)==len(result['groups']),'SRT readback count')
     for block,r in zip(blocks,result['groups']):
         lines=block.split('\n');cs=[cmap[i] for i in r['cue_ids']]

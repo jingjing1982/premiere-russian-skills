@@ -7,7 +7,7 @@ description: 结合对应HeyGen导出Excel与最终俄中SRT分配speaker并生�
 
 ## 用户使用
 - **什么时候用：** 视频已上传HeyGen，已下载对应Excel，合并SRT已最终确认时。
-- **需要准备：** 每个视频对应的Excel和最终双语SRT；分部另提供准确分界。
+- **需要准备：** 每个视频对应的Excel和最终双语SRT；分部提供准确分界；忘记切点时可提供实际导出视频及可用导出记录。
 - **一句调用：** `$heygen-bilingual-upload 用这些配套Excel和SRT生成上传CSV，speaker按Excel填写。`
 - **完成后检查：** 检查两种声音交接、分部偏移和异常清单；CSV不会自动上传。
 
@@ -21,5 +21,9 @@ description: 结合对应HeyGen导出Excel与最终俄中SRT分配speaker并生�
 先核对版本、字段及时间原点；有现成handoff先check，无记录的外部文件按workflow.md核实后登记。不得把“已提供两文件”当成没有冲突的证明。先运行`srt_to_heygen_csv.py 最终.srt --template-xlsx 导出.xlsx --audit-speakers`；跨标签/多容差/中点空档先核查正文与真实讲话归属。不把中点当声纹证明。正文混入两人退回合并阶段；时间偏移或误标只有真实证据才填speaker-review。
 另外核对每次短对话交接：时间重排后的整条字幕可能完全落入另一人的Excel时段，程序此时未必报警。优先复用绑定当前来源的合并阶段说话人证据并对照Excel台词；有偏移时检查该对话的全部短轮次，不只检查报警条目。无证据不得按内容猜人；核实后可对未报警条目同样提交speaker-review。
 公开交付入口：`python scripts/upload_checked.py 最终.srt 上传.csv --template-xlsx 导出.xlsx --handoff handoff.json --report 生成核验.json`；有复核加--speaker-review 实际复核.json。再另跑同命令加--verify-only，report用新文件名。verified=true、speaker_empty_count=0、无未决跨人问题才交付。原文OK等短句不删不翻译。
-分部必须先确认精确排他分界及偏移；使用原始转换器--parts-manifest，经完整覆盖校验，逐份--verify-only。每部登记局部SRT/视频交接记录并核对其文字和时间与源映射完全一致，不能通过填错局部时码“验证”自己。单条跨分界拒绝自动拆字。详见converter-usage.md。
+分部先读[实际视频分界核对](references/segmented-video.md)，核实精确范围及各部真实起点；使用原始转换器--parts-manifest，经完整覆盖校验，逐份--verify-only。每部登记局部SRT/视频交接记录并核对其文字和时间与源映射完全一致，不能通过填错局部时码“验证”自己。单条跨分界拒绝自动拆字。详见converter-usage.md。
 
+
+## 任务收尾
+
+开始与交付前遵循[任务目录、预览和收尾](references/task-lifecycle.md)。不重复创建备份、预览或依赖环境；不清理用户已有工程和素材。
