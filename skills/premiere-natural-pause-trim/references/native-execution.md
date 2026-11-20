@@ -1,6 +1,6 @@
 # 原生剪辑队列：准备、执行、恢复
 
-仅适用于premiere-connection.md描述的简单结构。计算器不会理解声音，必须先按所选技能确定并审阅删除清单。清单JSON为{"cuts":[[起帧,止帧]],"protected":[],"review_reference":"实际审阅报告及范围"}，使用整数帧、半开区间。自然停顿仅保护必要叙事/交接动作与有效声音；普通无声手势不延长等待。还必须按[剪后镜头核对](seam-review.md)加入绑定当前预览的seam_review，通过后才可准备队列。
+仅适用于premiere-connection.md描述的简单结构。计算器不会理解声音，必须先按[气口测量输入与验收](pause-measurement.md)取得当前成片参考，再确定并审阅删除清单。清单JSON为{"cuts":[[起帧,止帧]],"protected":[],"review_reference":"实际审阅报告及范围"}，使用整数帧、半开区间。自然停顿仅保护必要叙事/交接动作与有效声音；普通无声手势不延长等待。对每个最终拟删区间按媒体原采样率、全部声道检查；保留区间及听感另行核验。还必须按[剪后镜头核对](seam-review.md)加入绑定当前预览的seam_review，通过后才可准备队列。
 
 1. 只读核实源与预览当前保存内容。记录轨道target/lock/sync、波纹序列标记开关；全部相关字幕/音视频要参与收拢。未确认字幕随extract收拢、标记波纹或复杂结构时不得执行。
 2. `python scripts/native_cut.py prepare --source 原工程.prproj --preview 独立预览.prproj --uid 实际UID --cuts 审阅清单.json --output 新队列目录`。生成baseline.prproj、job.json、逐步cut-NNN.jsx、read-live.jsx、save-preview.jsx。脚本不修改PR或桥梁。
